@@ -1,12 +1,12 @@
 import Link from "next/link"
 
-export default function Home() {
+export default function Cart() {
 	return (
 		<div>
 			<h4 className="title" style={{ fontSize: 30 }}>
-				Hello Fresh
+				Cart
 			</h4>
-			<p className="title-sub">Lorem ipsum</p>
+			<Link href="/cart/payment">Payment</Link>
 		</div>
 	)
 }
