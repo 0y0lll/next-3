@@ -20,6 +20,12 @@ body {
 	color: black;
 	padding: 20px;
 	border-radius: 5px;
+	overflow: hidden;
+}
+
+.food img {
+	width: 100% !important;
+	height: 100% !important;
 }
 
 .navbar {
@@ -30,4 +36,12 @@ body {
 .navbar a {
 	margin-right: 10px;
 	text-decoration: none;
+}
+
+.cart-item {
+	padding: 10px;
+	display: flex;
+	justify-content: space-around;
+	border-bottom: 1px solid grey;
+	line-height: 0px;
 }
