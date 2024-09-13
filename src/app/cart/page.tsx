@@ -29,8 +29,24 @@ export default function Cart() {
 			{products.map((item, index) => (
 				<CartItem key={index} name={item.name} price={item.price} image={item.imgSrc} />
 			))}
-
-			<Link href="/cart/payment">Payment</Link>
+			
+			<div style={{
+				display: "flex",
+				justifyContent: "space-between",
+				marginTop: 20,
+			}}>
+				<div>
+				<div>
+					Total: $120
+				</div>
+					<Link href="/cart/payment">Payment</Link>
+				</div>
+				<button style={{
+					border: 'none',
+					backgroundColor: 'red',
+					color: 'white',
+				}}>Click</button>
+			</div>
 		</div>
 	)
 }
