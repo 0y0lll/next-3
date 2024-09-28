@@ -1,9 +1,10 @@
-'use client'
+"use client"
 
 import Image from "next/image"
 import { useState } from "react"
 
 interface ProductItemProps {
+	id: number
 	name: string
 	price: number
 	imgSrc: string
@@ -11,43 +12,48 @@ interface ProductItemProps {
 }
 
 export default function List() {
-	const [count, setCount] = useState(0)
-	
-	const products: ProductItemProps[] = [
+	const [products, setProducts] = useState<ProductItemProps[]>([
 		{
+			id: 1,
 			name: "상품1",
 			price: 40,
 			imgSrc: "/food0.png",
 			count: 0,
 		},
 		{
+			id: 2,
 			name: "상품2",
 			price: 30,
 			imgSrc: "/food1.png",
 			count: 0,
 		},
 		{
+			id: 3,
 			name: "상품3",
 			price: 50,
 			imgSrc: "/food2.png",
 			count: 0,
 		},
-	]
-	
-	const addCount = (product: ProductItemProps) => {
-		const newCount = count + 1
-		
-		if (newCount >= 0 && newCount <= 20) {
-			setCount(newCount)
-		}
+	])
+
+	const addCount = (id: number) => {
+		setProducts((prevItems) =>
+			prevItems.map((item) =>
+				item.id === id && item.count >= 0 && item.count < 10
+					? { ...item, count: item.count + 1 }
+					: item,
+			),
+		)
 	}
-	
-	const removeCount = (product: ProductItemProps) => {
-		const newCount = count - 1
-		
-		if (newCount >= 0) {
-			setCount(count - 1)
-		}		
+
+	const removeCount = (id: number) => {
+		setProducts((prevItems) =>
+			prevItems.map((item) =>
+				item.id === id && item.count > 0
+					? { ...item, count: item.count - 1 }
+					: item,
+			),
+		)
 	}
 
 	return (
@@ -67,9 +73,9 @@ export default function List() {
 					<h4>
 						{item.name} ${item.price}
 					</h4>
-					<button onClick={() => removeCount(item)}>-</button>
-					<span>{count}</span>
-					<button onClick={() => addCount(item)}>+</button>
+					<button onClick={() => removeCount(item.id)}>-</button>
+					<span>{item.count}</span>
+					<button onClick={() => addCount(item.id)}>+</button>
 				</div>
 			))}
 		</div>
